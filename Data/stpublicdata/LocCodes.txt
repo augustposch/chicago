@@ -1,0 +1,89 @@
+A
+
+LocationCode In ('3100', '3102', '3104', '3105', '3110', '3113', '3114', '3118', '3119', '3120', '3131')
+
+
+B
+LocationCode In ('1717', '1726', '1737') or (LocationCode = '1700' and C_RTA_SUBAREA = 'B')
+
+C
+LocationCode In ('1703', '1704', '1706', '1708', '1713', '1714', '1716', '1718', '1719', '1724', '1725', '1730', '1735', '1736', '1738', '1739')  or (LocationCode = '1700' and C_RTA_SUBAREA = 'C')
+
+
+D
+LocationCode In ('1701', '1702', '1709', '1715', '1721', '1723', '1729', '1731', '1732', '1733', '1734') or (LocationCode = '1700' and C_RTA_SUBAREA = 'D')
+
+E
+
+LocationCode In ('2700', '2701', '2704', '2706', '2707', '2709', '2710', '2711', '2713', '2715', '2716', '2717', '2719', '2720', '2721', '2723', '2724', '2727')
+
+
+
+
+SELECT 
+  ROW_NUMBER() OVER(ORDER BY RTATax ASC) AS Row#,
+  RTATax, RTAStatus, C_RTA_SUBAREA, LocationCode
+FROM dbo.PastTransactions where RTAStatus <> 'X' and RTA <> 'N' and RTACalculated > 0 and LocationCode in ('3100', '3102', '3104', '3105', '3110', '3113', '3114', '3118', '3119', '3120', '3131')
+
+
+
+
+
+
+
+'1700'
+In ('1717', '1726', '1737')
+
+
+'1700'
+In ('1703', '1704', '1706', '1708', '1713', '1714', '1716', '1718', '1719', '1724', '1725', '1730', '1735', '1736', '1738', '1739')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'1700'
+In ('1701', '1702', '1709', '1715', '1721', '1723', '1729', '1731', '1732', '1733', '1734')
+
+
+
+
+
+
+
+
+
+
+In ('2700', '2701', '2704', '2706', '2707', '2709', '2710', '2711', '2713', '2715', '2716', '2717', '2719', '2720', '2721', '2723', '2724', '2727')
+
+
+
+select sum(RTATax) as RTATax, count(VIN) as VIN_Count from dbo.PastTransactions where RTAStatus <> 'X' and RTA <> 'N' and RTACalculated > 0
+
+
+select sum(RTATax) as RTATax, count(VIN) as VIN_Count from dbo.PastTransactions where RTAStatus <> 'X' and RTA <> 'N' and RTACalculated > 0 and (LocationCode in ('3100', '3102', '3104', '3105', '3110', '3113', '3114', '3118', '3119', '3120', '3131'))
+select sum(RTATax) as RTATax, count(VIN) as VIN_Count from dbo.PastTransactions where RTAStatus <> 'X' and RTA <> 'N' and RTACalculated > 0 and (LocationCode in ('1717', '1726', '1737')  or (LocationCode = '1700' and C_RTA_SUBAREA = 'B'))
+select sum(RTATax) as RTATax, count(VIN) as VIN_Count from dbo.PastTransactions where RTAStatus <> 'X' and RTA <> 'N' and RTACalculated > 0 and (LocationCode in ('1703', '1704', '1706', '1708', '1713', '1714', '1716', '1718', '1719', '1724', '1725', '1730', '1735', '1736', '1738', '1739')  or (LocationCode = '1700' and C_RTA_SUBAREA = 'C'))
+select sum(RTATax) as RTATax, count(VIN) as VIN_Count from dbo.PastTransactions where RTAStatus <> 'X' and RTA <> 'N' and RTACalculated > 0 and (LocationCode in ('1701', '1702', '1709', '1715', '1721', '1723', '1729', '1731', '1732', '1733', '1734')  or (LocationCode = '1700' and C_RTA_SUBAREA = 'D'))
+select sum(RTATax) as RTATax, count(VIN) as VIN_Count from dbo.PastTransactions where RTAStatus <> 'X' and RTA <> 'N' and RTACalculated > 0 and (LocationCode in ('2700', '2701', '2704', '2706', '2707', '2709', '2710', '2711', '2713', '2715', '2716', '2717', '2719', '2720', '2721', '2723', '2724', '2727'))
+
+
+select avg(RTATax) as AVG_RTATax, count(VIN) as VIN_Count from dbo.PastTransactions where RTAStatus <> 'X' and RTA <> 'N' and RTACalculated > 0
+
+
+select avg(RTATax) as AVG_RTATax, count(VIN) as VIN_Count from dbo.PastTransactions where RTAStatus <> 'X' and RTA <> 'N' and RTACalculated > 0 and (LocationCode in ('3100', '3102', '3104', '3105', '3110', '3113', '3114', '3118', '3119', '3120', '3131'))
+select avg(RTATax) as AVG_RTATax, count(VIN) as VIN_Count from dbo.PastTransactions where RTAStatus <> 'X' and RTA <> 'N' and RTACalculated > 0 and (LocationCode in ('1717', '1726', '1737')  or (LocationCode = '1700' and C_RTA_SUBAREA = 'B'))
+select avg(RTATax) as AVG_RTATax, count(VIN) as VIN_Count from dbo.PastTransactions where RTAStatus <> 'X' and RTA <> 'N' and RTACalculated > 0 and (LocationCode in ('1703', '1704', '1706', '1708', '1713', '1714', '1716', '1718', '1719', '1724', '1725', '1730', '1735', '1736', '1738', '1739')  or (LocationCode = '1700' and C_RTA_SUBAREA = 'C'))
+select avg(RTATax) as AVG_RTATax, count(VIN) as VIN_Count from dbo.PastTransactions where RTAStatus <> 'X' and RTA <> 'N' and RTACalculated > 0 and (LocationCode in ('1701', '1702', '1709', '1715', '1721', '1723', '1729', '1731', '1732', '1733', '1734')  or (LocationCode = '1700' and C_RTA_SUBAREA = 'D'))
+select avg(RTATax) as AVG_RTATax, count(VIN) as VIN_Count from dbo.PastTransactions where RTAStatus <> 'X' and RTA <> 'N' and RTACalculated > 0 and (LocationCode in ('2700', '2701', '2704', '2706', '2707', '2709', '2710', '2711', '2713', '2715', '2716', '2717', '2719', '2720', '2721', '2723', '2724', '2727'))
+
